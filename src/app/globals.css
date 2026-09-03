@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    /* Never put padding: 0 on * here */
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    color: white;
+    background-color: #020813;
+    overflow-x: hidden;
+  }
+}
+#bodyMain {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+/* Blob Animation */
+@keyframes borderPulse {
+  0%, 100% {
+    border-radius: 30% 70% 70% 30% / 30% 52% 48% 70%;
+    box-shadow: 0 -2vmin 4vmin #ADD8E6 inset, 0 -4vmin 4vmin #7B68EE inset, 0 -2vmin 7vmin #4169E1 inset;
+  }
+  50% {
+    border-radius: 100%;
+    box-shadow: 0 4vmin 16vmin #ADD8E6 inset, 0 2vmin 5vmin #4682B4 inset, 0 4vmin 4vmin #7B68EE inset;
+  }
+}
+
+.animate-blob {
+  animation: borderPulse 15s infinite;
+  will-change: transform, border-radius, box-shadow;
+}
+
+
+/* =========================================================
+   BACKGROUND FLOATING CODE SNIPPETS (FIXED VIEWPORT)
+   ========================================================= */
+
+.bg-shapes-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1; /* Sits above base gradient (z-0), behind #bodyMain (z-10) */
+}
+
+.bg-shape {
+  position: absolute;
+  top: -60px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  user-select: none;
+  filter: drop-shadow(0 0 6px currentColor);
+  animation: floatDownward linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Downward drift across the full viewport height */
+@keyframes floatDownward {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.35;
+  }
+  90% {
+    opacity: 0.35;
+  }
+  100% {
+    /* 115vh ensures it passes fully below the bottom of the screen */
+    transform: translateY(115vh) rotate(12deg);
+    opacity: 0;
+  }
+}
+
+/* Distributed horizontal positions, speeds, and delays */
+.shape-1  { left: 5%;  animation-duration: 16s; animation-delay: 0s; }
+.shape-2  { left: 16%; animation-duration: 22s; animation-delay: 3s; }
+.shape-3  { left: 28%; animation-duration: 26s; animation-delay: 7s; }
+.shape-4  { left: 40%; animation-duration: 18s; animation-delay: 1s; }
+.shape-5  { left: 52%; animation-duration: 24s; animation-delay: 10s; }
+.shape-6  { left: 64%; animation-duration: 19s; animation-delay: 4s; }
+.shape-7  { left: 76%; animation-duration: 25s; animation-delay: 8s; }
+.shape-8  { left: 86%; animation-duration: 15s; animation-delay: 2s; }
+.shape-9  { left: 93%; animation-duration: 21s; animation-delay: 6s; }
+.shape-10 { left: 10%; animation-duration: 28s; animation-delay: 12s; }
+.shape-11 { left: 46%; animation-duration: 20s; animation-delay: 14s; }
+.shape-12 { left: 70%; animation-duration: 27s; animation-delay: 16s; }
