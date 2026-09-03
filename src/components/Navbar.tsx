@@ -106,7 +106,7 @@ export default function Navbar() {
 
                                 {/* Exact Original Desktop Dropdown Menu */}
                                 <div className="absolute px-4 py-2 left-0 mt-2 hidden w-48 flex-col rounded-md border border-white/10 bg-[radial-gradient(circle_at_top,_#085195_10%,_#03386a_30%,_#011950_80%)] p-2 shadow-xl group-hover:flex">
-                                    {route.dropdownItems.map((item) => (
+                                    {route.dropdownItems?.map((item) => (
                                         <Link
                                             key={item.label}
                                             href={item.path}
