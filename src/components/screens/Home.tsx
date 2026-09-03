@@ -7,30 +7,6 @@ import { FaFileAlt, FaFilePdf, FaChevronUp, FaPlay, FaPause } from "react-icons/
 import { IoIosPaper } from "react-icons/io";
 import { IoCubeOutline, IoSparklesOutline, IoFilmOutline } from "react-icons/io5";
 
-// Declare custom web component for TypeScript
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'model-viewer': React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement> & {
-          src?: string;
-          alt?: string;
-          'power-preference'?: string;
-          'render-scale'?: string;
-          'shadow-intensity'?: string;
-          'shadow-softness'?: string;
-          exposure?: string;
-          'interaction-prompt'?: string;
-          loading?: string;
-          autoplay?: boolean;
-          'animation-name'?: string;
-        },
-        HTMLElement
-      >;
-    }
-  }
-}
-
 export default function Home() {
     const [isSticky, setIsSticky] = useState(false);
     const [showOptions, setShowOptions] = useState(false);
