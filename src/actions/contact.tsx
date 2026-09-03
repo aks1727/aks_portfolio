@@ -12,11 +12,11 @@ interface ContactFormData {
 export async function submitContactForm(data: ContactFormData) {
   const { name, senderMail, subject, message } = data;
 
-  const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
+  const smtpHost = process.env.SMTP_HOST ;
   const smtpPort = Number(process.env.SMTP_PORT) || 587;
   const smtpUser = process.env.SMTP_MAIL; // vaiakshindustries@gmail.com
   const smtpPass = process.env.NODE_MAILER_PASSWORD; // Google App Password
-  const toMail = process.env.TO_MAIL || 'kumarsinhaakshat8@gmail.com';
+  const toMail = process.env.TO_MAIL;
 
   if (!smtpHost || !smtpUser || !smtpPass || !toMail) {
     console.error('Missing SMTP environment variables');

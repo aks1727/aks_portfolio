@@ -124,34 +124,33 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="w-full min-h-screen bg-transparent text-white flex flex-col justify-between items-center py-20 px-6 sm:px-12 lg:px-20"
+      className="w-full min-h-screen bg-transparent text-white flex flex-col justify-center items-center py-16 sm:py-20 lg:py-24 px-4 sm:px-8 lg:px-12"
     >
-      <div className="max-w-6xl w-full mx-auto flex flex-col justify-center gap-10 my-auto">
+      <div className="max-w-6xl w-full mx-auto flex flex-col justify-center gap-8 sm:gap-10 lg:gap-12 my-auto">
         
         {/* Section Header */}
         <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white font-['Montserrat_Alternates'] tracking-wide">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white font-['Montserrat_Alternates'] tracking-wide">
             Featured Projects
           </h2>
-          <p className="text-xs sm:text-sm text-teal-300/80 mt-2 font-medium">
+          <p className="text-xs sm:text-sm lg:text-base text-teal-300/80 mt-2 font-medium">
             Click on any project to view complete architecture details, live demos, and source code
           </p>
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.key;
             return (
               <button
                 key={cat.key}
                 onClick={() => setActiveCategory(cat.key)}
-                className={`rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 border ${
+                className={`rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 border px-4 py-2 sm:px-5 sm:py-2.5 inline-flex items-center cursor-pointer ${
                   isActive
                     ? "bg-teal-400 text-slate-950 border-teal-300 shadow-[0_0_15px_rgba(45,212,191,0.3)] scale-105"
                     : "bg-white/5 border-white/10 text-gray-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
                 }`}
-                style={{ padding: '10px 20px', display: 'inline-flex', alignItems: 'center' }}
               >
                 {cat.label}
               </button>
@@ -159,7 +158,7 @@ export default function Projects() {
           })}
         </div>
 
-        {/* Compact Grid Items with High-Visibility Action Buttons */}
+        {/* Compact Grid Items with Action Buttons */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
@@ -173,59 +172,43 @@ export default function Projects() {
               <div
                 key={index}
                 onClick={() => setSelectedProject(project)}
-                className="group relative bg-white/5 border border-white/10 hover:border-teal-400/60 rounded-2xl overflow-hidden backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(45,212,191,0.2)] cursor-pointer flex flex-col justify-between"
-                style={{ padding: '20px' }}
+                className="group relative bg-white/5 border border-white/10 hover:border-teal-400/60 rounded-2xl overflow-hidden backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(45,212,191,0.2)] cursor-pointer flex flex-col justify-between p-5 sm:p-6"
               >
                 <div>
                   {/* Image Container with Hover Overlay */}
-                  <div className="relative w-full h-38 sm:h-40 rounded-xl overflow-hidden bg-black/40 border border-white/10 mb-4">
+                  <div className="relative w-full h-40 sm:h-44 rounded-xl overflow-hidden bg-black/40 border border-white/10 mb-4">
                     <Image
                       src={project.imgLink}
                       alt={project.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, 30vw"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-end p-3">
-                      <span 
-                        className="rounded-lg bg-teal-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 shadow-lg"
-                        style={{ padding: '6px 14px' }}
-                      >
+                      <span className="rounded-lg bg-teal-400 text-slate-950 text-xs font-bold flex items-center gap-1.5 shadow-lg px-3 py-1.5">
                         <FaExpand size={11} /> Quick View
                       </span>
                     </div>
                   </div>
 
-                  {/* Card Title with Padding */}
-                  <h3 
-                    className="text-base sm:text-lg font-bold text-white group-hover:text-teal-300 transition-colors tracking-wide"
-                    style={{ paddingTop: '2px', paddingBottom: '6px' }}
-                  >
+                  {/* Card Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-teal-300 transition-colors tracking-wide pt-0.5 pb-1.5">
                     {project.name}
                   </h3>
 
-                  {/* Card Description with Vertical Padding */}
-                  <p 
-                    className="text-xs text-gray-300/80 line-clamp-2 text-left"
-                    style={{ paddingTop: '2px', paddingBottom: '14px', lineHeight: '1.6' }}
-                  >
+                  {/* Card Description */}
+                  <p className="text-xs sm:text-sm text-gray-300/80 line-clamp-2 text-left pt-0.5 pb-3.5 leading-relaxed">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Card Footer with Glowing Recruiter Button */}
-                <div 
-                  className="pt-3.5 border-t border-white/10 flex items-center justify-between gap-2"
-                  style={{ marginTop: '8px' }}
-                >
-                  <span className="text-[11px] font-semibold text-teal-300/90 truncate">
+                {/* Card Footer with Recruiter Action Button */}
+                <div className="pt-3.5 border-t border-white/10 flex items-center justify-between gap-2 mt-2">
+                  <span className="text-xs font-semibold text-teal-300/90 truncate">
                     {project.technologies.stack}
                   </span>
 
-                  <button 
-                    className="rounded-xl bg-teal-400 group-hover:bg-teal-300 text-slate-950 font-bold text-xs transition-all shadow-[0_0_12px_rgba(45,212,191,0.3)] group-hover:shadow-[0_0_18px_rgba(45,212,191,0.5)] active:scale-95 shrink-0 flex items-center gap-1.5"
-                    style={{ padding: '8px 16px' }}
-                  >
+                  <button className="rounded-xl bg-teal-400 group-hover:bg-teal-300 text-slate-950 font-bold text-xs transition-all shadow-[0_0_12px_rgba(45,212,191,0.3)] group-hover:shadow-[0_0_18px_rgba(45,212,191,0.5)] active:scale-95 shrink-0 flex items-center gap-1.5 px-3.5 py-2">
                     <span>View Project</span>
                     <span className="text-sm">&rarr;</span>
                   </button>
@@ -237,7 +220,7 @@ export default function Projects() {
 
       </div>
 
-      {/* Glassmorphic Modal Drawer with Custom Scrollbar */}
+      {/* Glassmorphic Modal Drawer */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -253,20 +236,18 @@ export default function Projects() {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#031d38]/95 border border-teal-500/30 rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl backdrop-blur-xl relative [scrollbar-width:thin] [scrollbar-color:#2dd4bf_rgba(255,255,255,0.05)] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-teal-400 [&::-webkit-scrollbar-thumb]:rounded-full"
-              style={{ padding: '32px' }}
+              className="bg-[#031d38]/95 border border-teal-500/30 rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl backdrop-blur-xl relative p-6 sm:p-8 lg:p-10 [scrollbar-width:thin] [scrollbar-color:#2dd4bf_rgba(255,255,255,0.05)] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-white/5 [&::-webkit-scrollbar-thumb]:bg-teal-400 [&::-webkit-scrollbar-thumb]:rounded-full"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 rounded-full bg-white/10 border border-white/10 text-gray-300 hover:text-slate-950 hover:bg-teal-400 hover:border-teal-400 transition-all z-10"
-                style={{ padding: '10px' }}
+                className="absolute top-5 right-5 rounded-full bg-white/10 border border-white/10 text-gray-300 hover:text-slate-950 hover:bg-teal-400 hover:border-teal-400 transition-all z-10 p-2.5 cursor-pointer"
               >
                 <FaTimes size={14} />
               </button>
 
-              {/* High-Res Preview Image */}
-              <div className="relative w-full h-56 sm:h-64 rounded-2xl overflow-hidden bg-black/50 border border-white/10 mb-6">
+              {/* Preview Image */}
+              <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden bg-black/50 border border-white/10 mb-6">
                 <Image
                   src={selectedProject.imgLink}
                   alt={selectedProject.name}
@@ -276,32 +257,25 @@ export default function Projects() {
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-wide">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-wide">
                 {selectedProject.name}
               </h3>
 
-              <p 
-                className="text-xs sm:text-sm text-gray-300/90 font-normal leading-relaxed text-left"
-                style={{ paddingTop: '12px', paddingBottom: '20px', lineHeight: '1.75' }}
-              >
+              <p className="text-xs sm:text-sm lg:text-base text-gray-300/90 font-normal leading-relaxed text-left pt-3 pb-5">
                 {selectedProject.description}
               </p>
 
               {/* Key Features */}
-              <div style={{ paddingBottom: '20px' }}>
-                <span 
-                  className="text-xs font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2"
-                  style={{ paddingBottom: '10px' }}
-                >
+              <div className="pb-5">
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2 pb-2.5">
                   <FaCheckCircle size={13} />
                   Key Features
                 </span>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-2 sm:gap-2.5">
                   {selectedProject.keyFeatures.map((feature, idx) => (
                     <span
                       key={idx}
-                      className="bg-teal-400/10 border border-teal-400/25 text-teal-300 text-xs font-medium rounded-lg"
-                      style={{ padding: '6px 14px' }}
+                      className="bg-teal-400/10 border border-teal-400/25 text-teal-300 text-xs sm:text-sm font-medium rounded-lg px-3 py-1.5"
                     >
                       {feature}
                     </span>
@@ -310,15 +284,12 @@ export default function Projects() {
               </div>
 
               {/* Technologies */}
-              <div style={{ paddingBottom: '24px' }}>
-                <span 
-                  className="text-xs font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2"
-                  style={{ paddingBottom: '8px' }}
-                >
+              <div className="pb-6">
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2 pb-2">
                   <FaCode size={13} />
                   Technologies Used
                 </span>
-                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                <p className="text-xs sm:text-sm lg:text-base text-gray-300 leading-relaxed">
                   <span className="font-semibold text-white">{selectedProject.technologies.stack}</span>
                   {selectedProject.technologies.ui && ` • ${selectedProject.technologies.ui}`}
                   {selectedProject.technologies.additional && ` • ${selectedProject.technologies.additional}`}
@@ -326,17 +297,13 @@ export default function Projects() {
               </div>
 
               {/* Action Buttons */}
-              <div 
-                className="flex items-center gap-4 border-t border-white/10"
-                style={{ paddingTop: '20px' }}
-              >
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 border-t border-white/10 pt-5">
                 {selectedProject.websiteLink && (
                   <a
                     href={selectedProject.websiteLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs transition-all shadow-lg active:scale-95"
-                    style={{ padding: '12px 22px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                    className="rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-lg active:scale-95 inline-flex items-center gap-2 px-5 py-3"
                   >
                     <FaExternalLinkAlt size={12} />
                     <span>Live Demo</span>
@@ -348,8 +315,7 @@ export default function Projects() {
                     href={`https://github.com/aks1727/${selectedProject.githubRepo}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-white font-semibold text-xs transition-all active:scale-95"
-                    style={{ padding: '12px 22px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                    className="rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-white font-semibold text-xs sm:text-sm transition-all active:scale-95 inline-flex items-center gap-2 px-5 py-3"
                   >
                     <FaGithub size={14} />
                     <span>View GitHub Repo</span>

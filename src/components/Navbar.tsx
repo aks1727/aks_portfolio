@@ -34,7 +34,7 @@ const routes = [
         dropdownItems: [
             { label: 'Web Development', path: '#web' },
             { label: 'Mobile Apps', path: '#mobile' },
-            {label: 'Automation Testing', path: "#automation"},
+            { label: 'Automation Testing', path: '#automation' },
         ]
     },
     { label: 'Contact', icon: Phone, path: '#contact', hasDropdown: false }
@@ -43,9 +43,8 @@ const routes = [
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-    const [openDropdown, setOpenDropdown] = useState(null);
+    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
-    // Scroll detection logic
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
@@ -54,28 +53,30 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleDropdown = (label) => {
+    const toggleDropdown = (label: string) => {
         setOpenDropdown(openDropdown === label ? null : label);
     };
 
     return (
         <header
-            className={`sticky top-0 z-50 w-full px-4 transition-colors duration-300 ${isScrolled
+            className={`sticky top-0 z-50 w-full px-4 sm:px-8 transition-colors duration-300 ${
+                isScrolled
                     ? 'bg-[#0851bf]/10 backdrop-blur-md'
                     : 'bg-transparent'
-                }`}
+            }`}
         >
-            <div className="flex h-16 items-center justify-between lg:justify-center">
+            <div className="flex h-16 sm:h-20 items-center justify-between lg:justify-center">
+                
                 {/* Mobile Hamburger Button */}
-                {/* <button
+                <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="flex items-center justify-center rounded-md bg-[#0851bf] p-2 text-white lg:hidden hover:bg-[#0851bf]/80 transition-colors"
                     aria-label="Toggle Navigation"
                 >
                     {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </button> */}
+                </button>
 
-                {/* Desktop Navigation Links */}
+                {/* Original Desktop Navigation Links */}
                 <nav className="hidden items-center gap-8 lg:flex">
                     {routes.map((route) => {
                         const Icon = route.icon;
@@ -103,7 +104,7 @@ export default function Navbar() {
                                     <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
                                 </button>
 
-                                {/* Desktop Dropdown Menu */}
+                                {/* Exact Original Desktop Dropdown Menu */}
                                 <div className="absolute px-4 py-2 left-0 mt-2 hidden w-48 flex-col rounded-md border border-white/10 bg-[radial-gradient(circle_at_top,_#085195_10%,_#03386a_30%,_#011950_80%)] p-2 shadow-xl group-hover:flex">
                                     {route.dropdownItems.map((item) => (
                                         <Link
@@ -152,8 +153,9 @@ export default function Navbar() {
                                         {route.label}
                                     </span>
                                     <ChevronDown
-                                        className={`h-4 w-4 transition-transform ${openDropdown === route.label ? 'rotate-180' : ''
-                                            }`}
+                                        className={`h-4 w-4 transition-transform ${
+                                            openDropdown === route.label ? 'rotate-180' : ''
+                                        }`}
                                     />
                                 </button>
 
